@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+
+  <!--  音频格式   audio -->
+  <!-- 视频用video   poster 海报 -->
+  <audio src="baliansha.mp3" controls="" loop>
+    你的浏览器不支持该版本
+  </audio>
+  <video  id="video1234567" width=500 height=500 src="volcano.mp4" poster="zly2.png" controls>
+    你的浏览器不支持该版本
+  </video>
+  <br><br>
+  <button type="button" onclick="bofang()">播放</button>
+  <button type="button" onclick="zanting()">暂停</button>
+  <button type="button" onclick="kuaijin()">快进</button>
+  <button type="button" onclick="kuaitui()">快退</button>
+  <button type="button" onclick="jingyin(this)">静音</button>
+  <button type="button" onclick="jiasu()">加速</button>
+  <button type="button" onclick="jiansu()">减速</button>
+  <button type="button" onclick="zhengchang()">正常</button>
+  <button type="button" onclick="tigaoyinliang()">提高音量</button>
+  <button type="button" onclick="jiangdiyinliang()">降低音量</button>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <progress id="progress" value="0" max="100">50%</progress>
+  <meter  id="meter" min="200" max="500" value="50">
+<!-- <script   脚本> -->
+  <script type="text/javascript">
+  var progress = document.getElementById("progress");
+  var meter = document.getElementById("meter");
+  var aaa = document.getElementById('video1234567');
+
+
+
+  function bofang(){
+    if (progress.value<=100) {
+      var zongshijian = aaa.duration;
+      var currentPlayTime = aaa.currentTime;
+      var bili = currentPlayTime / zongshijian;
+      console.log("bili");
+      progress.value=bili*100;
+    }
+    if (progress.value>100) {
+    progress.value=100;
+    }
+
+  }
+
+  // setInterval(function(){
+  //   progress.value +=1;
+  // },100);
+  // setInterval(function(){
+  //   meter.value +=1;
+  // },100);
+  function bofang(){
+      // var bofangqi = html id video1234567
+      // var bofangqi = document.getElementById('video1234567');
+      console.log("我被点了");
+      aaa.play();}
+      // if (progress.value<100) {
+      //   progress.value += 10;
+      // }
+      // else {
+      //
+      // }
+      // meter.value +=10;
+
+
+    function zanting(){
+      // var aaa=document.getElementById('video1234567');
+      aaa.pause();
+    }
+    function kuaijin(){
+//    aaa.currentTime +=10;
+         aaa.currentTime=aaa.currentTime + 10;
+    }
+    function kuaitui(){
+      aaa.currentTime -=20;
+      // aaa.currentTime=aaa.currentTime + 10;
+    }
+    function jingyin(buttonObj){
+      // 如果有声音， 1.让声音停止；让文字显示“打开声音”  2.声音关闭    如果没声音，1.让让声音打开；2.让文字显示“0静音”；
+      // muted=静音
+      if (aaa.muted) {
+        // 1.让让声音打开；2.让文字显示“0静音”
+        aaa.muted=false;
+        buttonObj.innerHTML = "静音";
+      }
+      else {
+        // 1.让声音停止；让文字显示“打开声音”  2.声音关闭
+        aaa.muted=true;
+        buttonObj.innerHTML="打开声音";
+      }
+    }
+    function jiasu(){
+      aaa.playbackRate=3;
+    }
+    function jiansu(){
+      aaa.playbackRate=1/3;
+    }
+    function zhengchang(){
+      aaa.playbackRate=1;
+      // console.log("我被点了");
+    }
+    function tigaoyinliang(){
+      if (aaa.volume<1) {
+        aaa.volume +=0.2;
+      }
+
+    }
+    function jiangdiyinliang(){
+      if (aaa.volume>=0.2) {
+        aaa.volume -=0.2;
+      }
+
+    }
+  </script>
+</body>
+</html>
