@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MyControlVideo</title>
+  <style type="text/css">
+  #playBtn{
+    width: 40px;height: 40px;
+    background: url("bofang.png");
+  }
+  #pauseBtn{
+    width: 40px;height: 40px;
+    background: url(pause.png);
+  }
+  .progress progress{
+    width: 500px;
+  }
+  </style>
+</head>
+<body>
+  <video id="video"src="volcano.mp4" poster="zly2.png" width="500" height="300" controls>
+
+  </video>
+  <!-- 每一个按钮的点击事件  都存在该按钮的onclick属性里面-->
+  <div class="controlsWrap">
+    <button id="playBtn" type="button" name="playBtn" onclick="playFunction()">播放</button>
+    <button id="pauseBtn" type="button" name="pauseBtn" onclick="pauseFunction()">暂停</button>
+    <button  type="button" name="button" onclick="kuaijin()">快进</button>
+    <button type="button" name="button" onclick="kuaitui()">快退</button>
+    <button type="button" name="button" onclick="muted(this)">静音</button>
+    <button type="button" name="button" onclick="tigaoyinliang()">提高音量</button>
+    <button type="button" name="button" onclick="jiangdiyinliang()">降低音量</button>
+    <button type="button" name="button" onclick="jiasu()">加速</button>
+    <button type="button" name="button" onclick="jiansu()">减速</button>
+    <button type="button" name="button" onclick="zhengchang()">正常</button>
+  </div>
+  <div class="progress">
+    <progress id="progress" value="0" max="100"></progress>
+  </div>
+
+  <script type="text/javascript">
+    var video = document.getElementById('video');
+  function playFunction(){
+    video.play();
+  }
+  function pauseFunction(){
+    video.pause();
+  }
+  setInterval(function(){
+    var progress =document.getElementById('progress');
+    var percent = video.currentTime/video.duration;
+    progress.value=percent*100;
+  },100);
+
+  function kuaijin(){
+    if (video.currentTime>=video.duration) {
+      video.currentTime=video.duration;
+    }
+    else {
+      video.currentTime += 10;
+    }
+  }
+  function kuaitui(){
+    video.currentTime -= 10;
+    console.log("我被点了");
+  }
+  function muted(buttonObj){
+    if (video.muted) {
+    video.muted =false;
+    buttonObj.innerHTML="静音";
+      }
+      else {
+        video.muted = true;
+        buttonObj.innerHTML="打开声音";
+      }
+  }
+  function tigaoyinliang(){
+    if (video.volume<1) {
+      video.volume +=0.2;
+    }
+    else {
+      video.volune=1;
+    }
+  }
+  function jiangdiyinliang(){
+    if (video.volume>=0.2) {
+    video.volume -=0.2;
+    }
+  }
+
+  function jiasu(){
+    video.playbackRate =3;
+  }
+  function jiansu(){
+    video.playbackRate =1/3;
+  }
+  function zhengchang(){
+    video.playbackRate =1;
+  }
+  </script>
+  
+  </form>
+</body>
+</html>
